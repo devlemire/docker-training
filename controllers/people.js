@@ -14,7 +14,7 @@ module.exports = {
    },
    post(req, res) {
       const db = req.app.get('db')
-      console.log('POST /api/people -', req.body)
+
       if (!req.body.name || !req.body.age) {
          res.status(409).send('Request did not have a name or age on the body.')
          return
@@ -35,6 +35,7 @@ module.exports = {
    },
    delete(req, res) {
       const db = req.app.get('db')
+
       if (!req.query.id) {
          res.status(409).send('Request did not have an id.')
          return
