@@ -1,0 +1,25 @@
+{
+   "name": "docker-training",
+   "version": "1.0.0",
+   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+   "main": "index.js",
+   "scripts": {
+      "dev": "nodemon index.js"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "body-parser": "^1.18.2",
+      "connect-redis": "^3.3.3",
+      "cors": "^2.8.4",
+      "dotenv": "^5.0.1",
+      "express": "^4.16.3",
+      "express-session": "^1.15.6",
+      "massive": "^4.7.1",
+      "nodemon": "^1.17.2"
+   },
+   "nodemonConfig": {
+      "ignore": ["public/*"]
+   }
+}

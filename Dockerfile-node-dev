@@ -1,0 +1,11 @@
+FROM mhart/alpine-node:9
+
+LABEL maintainer="DevMountain"
+
+WORKDIR /var/server
+
+COPY package.json /var/server
+
+RUN yarn
+
+CMD ["yarn", "dev"]

@@ -1,0 +1,46 @@
+version: '3'
+services:
+   react_server:
+      container_name: 'docker-training-react'
+      build:
+         context: .
+         dockerfile: Dockerfile-react-dev
+      image: docker-training-react
+      ports:
+      - 3000:3000
+      volumes:
+      - ./public:/var/public
+      - /var/public/node_modules
+      restart: always
+   node_server:
+      container_name: 'docker-training-node'
+      build:
+         context: .
+         dockerfile: Dockerfile-node-dev
+      image: docker-training-node
+      ports:
+      - 4050:4050
+      links:
+      - postgres_server
+      - redis_server
+      - react_server
+      volumes:
+      - .:/var/server
+      - /var/server/node_modules
+      restart: always
+   postgres_server:
+      container_name: 'docker-training-psql'
+      image: postgres:9.5
+      volumes:
+      - ./schema/:/docker-entrypoint-initdb.d/
+      environment:
+         POSTGRES_DB: docker_training
+         POSTGRES_USER: testuser
+         POSTGRES_PASSWORD: testpassword
+      ports:
+      - 5433:5432
+      restart: always
+   redis_server:
+      container_name: 'docker-training-redis'
+      image: redis:3.2.11
+      restart: always
